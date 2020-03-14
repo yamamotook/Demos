@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ymmt轮播2</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+				font-size: 0;
+			}
+			
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.container {
+				height: 100%;
+				width: 100%;
+				perspective: 1900px;
+				position: relative;
+				transform-style: preserve-3d;
+			}
+			
+			.container img {
+				left: 50%;
+				top: 50%;
+				margin-left: -300px;
+				margin-top: -175px;
+				position: absolute;
+				width: 600px;
+				height: 300px;
+				border-radius: 8px;
+				transition: transform 0.5s ease-in-out;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<img src="img/1_800V.png" index="1" />
+			<img src="img/2_800V.png" index="2"  />
+			<img src="img/3_800V.png" index="3" />
+			<img src="img/4_800V.png" index="4" />
+			<img src="img/6_1000.png" index="5" />
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		var img = document.getElementsByTagName('img'); //获得要操作的图片对象
+		var len = img.length; //获得图片的数量
+		var halfLen = Math.floor(img.length / 2); //图片总数/2 得到中间值,用于下面确认左右两边的图片顺序
+		var currIndex = 4; //页面的主图片
+		function show() {
+			for(var i = 0; i < halfLen; i++) {
+				var leftIndex = currIndex - i - 1; //左边图片索引
+				if(leftIndex < 0) {//防止下标越界
+					leftIndex += len;
+				}
+				var rightIndex = currIndex + i + 1; //右边图片的索引
+				if(rightIndex > 4) {//防止下标越界
+					rightIndex -= len;
+				}
+				//分散主图片左边的图片 >分散方式:先向2边平移(translateX) 水平方向的平移, 改变2侧图片的Z轴高度translateZ(类似于Z-inex),最后让2侧的图片倾斜效果
+				img[leftIndex].style.transform = 'translateX(' + -300 * (i + 1) + 'px)' + 'translateZ('+ (200 - i * 100) + 'px)' + 'rotateY(30deg)';
+				//分散主图片右边的图片
+				img[rightIndex].style.transform = 'translateX(' + 300 * (i + 1) + 'px)' + 'translateZ('+ (200 - i * 100) + 'px)' + 'rotateY(-30deg)';
+				//清除两边图片的class 为点击事件做准备(防止点击的图片是同一张)
+				img[leftIndex].className = '';
+				img[rightIndex].className = '';
+			}
+			img[currIndex].style.transform = 'translateZ(' + 300 + 'px)'; //改变图片的Z轴高度,让主图片的视角最近
+			img[currIndex].className = 'active';
+		}
+		show(); //渲染
+		
+		function clickBind(){
+			for(var j = 0 ; j < len ; j++)
+			{
+				img[j].onclick = function (){
+					if(!(this.getAttribute('class') == 'active'))
+					{
+						currIndex = this.getAttribute('index') -1 ;
+						show();
+					}
+				}
+				img[j].onmouseover = function (){
+					clearInterval(timer);
+				}
+				img[j].onmouseleave = function (){
+					play();
+				}
+			}
+		}
+		clickBind();
+		
+		function play(){
+			timer = setInterval(function () {
+				if(currIndex == len - 1)
+				{
+					currIndex = 0;
+				}
+				else{
+					currIndex++; // 通过改变主图片的索引 进行即使渲染
+				}
+				show();
+				
+			},2000)
+			
+		}
+		play();
+		</script>
+
+</html>

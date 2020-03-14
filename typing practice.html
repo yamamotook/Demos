@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/animation.css"/>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				background: radial-gradient(circle,#444,#000,#000);
+			}
+			#font{
+				font-size: 400px;
+				text-shadow: 0 0 50px #9ACD32;
+				color: #FFFFFF;
+			}
+			#result{
+				font-size: 40px;
+				color: #444444;
+			}
+			#font.error{
+				color: red ;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div id="font">A</div>
+			<div id="result">上記のアルファベットを正しく入力してください</div>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+	var result = document.getElementById('result');
+	var font = document.getElementById('font');
+	var code ; 
+	var okCount = 0;
+	var falseCount = 0;
+	var key = true; //加锁,为了防止重复错误时,falsecount 的累加.当 key == true 才进行累加,当输入正确后解锁 
+		function show(){
+			var random = Math.random();
+			code = Math.floor(random* 26) +65 ; //获得下一次要在屏幕上显示的字母的Unicode
+			var arufa = String.fromCharCode(code); //将通过随机生成的A-Z(65-95)的Unicode 转换成字符(A-Z)
+			font.innerHTML = arufa;
+		}
+		show();
+		
+		window.onkeydown = function (event){
+			var keycode = event.keyCode; //通过event.keyCode 获得按下字母的 Unicode 的值
+			console.log(code);
+			if(keycode == code) //生成的Unicode 和 按下的Unicode 进行比较
+			{
+				okCount++;  //按对的数量
+				key = true; //开锁
+				font.className = 'animated a-bounceinT'
+				show(); //重新渲染新的字母
+			}
+			else {
+				if(key == true)
+				{
+					falseCount++;
+				}
+				key = false;
+				font.className = 'animated a-shake error';
+			}
+			resultFlush();
+			setTimeout(clearFontColor,500); //setTimeout 隔500ms 后执行指定函数
+			
+		}
+		function clearFontColor (){
+			font.className = '';  
+		}
+		function resultFlush(){
+			var count = okCount + falseCount;
+			var pasento = (okCount / count * 100);
+			//toFixed()保留几位小数
+			result.innerHTML = count + '個中'+'正確な数は'+okCount+',違う数は'+falseCount+',正確率は'+ pasento.toFixed(2);
+		}
+		
+	</script>
+</html>

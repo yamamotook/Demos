@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="search">
+		 <p id="content"></p>
+	</body>
+	<script>
+		
+		var oSearch = document.getElementById('search');
+		var oContent = document.getElementById('content');
+		var timeOut;
+		var data = {
+			text : ''
+		};
+	
+	
+		Object.defineProperty(data, 'text',{ 
+			get(){
+				return this._text;
+			},
+			set(newVal){
+				this._text = newVal;
+				cb();
+				
+			}
+		})
+		function cb(){
+			content.innerText = data.text;
+		}
+	
+		
+		
+		function debounce(handler,delay){
+			var timeOut = null;
+			return function (){
+				var _arg = arguments,
+					self = this;
+				clearTimeout(timeOut);
+				timeOut = setTimeout(function(){
+					console.log('ff');
+					handler.apply(self,_arg);
+				},delay);
+			}
+		}
+		
+		function update(){
+			data.text = this.value;
+		}
+		
+		oSearch.oninput = debounce(update,1000);	
+		
+	</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//1.最好使用单一var模式
+		//当通过var声明的属性 无法通过delete 删除,当不声明直接使用(暗示全局变量) 的属性 可以通过delete删除
+		//在全局声明变量
+// 		var global = 'ymmt';    
+		//暗示全局变量
+// 		implyVar = 'ankane';
+// 		delete global;
+// 		delete implyVar;
+// 		console.log(global);
+// 		console.log(typeof implyVar); 
+		
+		
+		//2.for循环遍历优化:
+		//1.使用单独的遍历 来缓存数组的长度
+		//2.使用逐步减至0,会更快
+// 		var arr = [1,2,3,4,5,6,7,8,9];
+// 		for(var i = arr.length; i-- ; ){
+// 			console.log(arr[i]);
+// 		}
+		
+		//3.for in 遍历对象 过滤 原型的属性
+		//在Object的原型上 添加一个 sex属性
+// 		Object.prototype.sex = 'man';
+// 		//要遍历的对象
+// 		var man = {
+// 			head : 1,
+// 			eye: 2,
+// 			hand :2,
+// 			foot:2
+// 		},i;
+// 		//通过for in 遍历 man 的属性(不含原型链的属性)
+// 		//将if条件放在for循环同行 cool
+// 		for(i in man) if(Object.prototype.hasOwnProperty.call(man,i)){
+// 			console.log(i + ' :' +man[i]);
+// 		}
+		
+// 		//4.eval() 避免使用eval() ,eval是魔鬼
+// 		function myFunc (){
+// 			console.log(1,2,3);
+// 		}
+		//避免使用以下方式传参
+		// setTimeout('myFunc()',1000);
+		
+		
+// 		var month = "01",
+		// 5.使用parseInt()的约定:为了避免不一致和未预期的结果,请每次都具体指定进制参数 现在可能已修复
+// 			year = "09";
+// 			year = parseInt(year);
+// 			console.log(year);
+		
+		//6.当return 后面有大括号时,一定要与return 同行, 否则会返回undefined
+// 		function test (){
+		// return undefined;
+// 			return   
+// 			{
+// 				name : 'ymmt';
+// 			}
+// 		}
+// 		var demo = test();
+// 		console.log(demo); -->undifined
+
+	</script>
+</html>

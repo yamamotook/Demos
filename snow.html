@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			:root,body{
+				height: 100%;
+			}
+			canvas{
+				background-color: #000;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<canvas id="canvas"></canvas>
+		
+	</body>
+	<script>
+		var canvas = document.getElementById('canvas'),
+			ctx = canvas.getContext('2d'),
+			snowArr = [],
+			snowCount = 80,
+			snowInterval = null;
+		canvas.width = document.body.clientWidth;
+		canvas.height = document.body.clientHeight;
+		
+		function Snow(x,speedX,speedY,speedRotate,rotate,scale){
+			this.x = x;
+			this.y = 20;
+			this.radius = 20;
+			this.speedX = speedX;
+			this.speedY = speedY;
+			this.rotate = rotate;
+			this.scale = scale;
+			this.speedRotate = speedRotate;
+			this.render();
+		}
+		
+		
+		Snow.prototype.render = function (){
+			var disX = this.radius * Math.cos(60 * Math.PI / 180),
+				disY = this.radius * Math.sin(60 * Math.PI / 180);
+			ctx.beginPath();
+			ctx.strokeStyle = '#fff';
+			ctx.lineCap = 'round';
+			ctx.lineWidth =  10;
+			ctx.save();
+			ctx.translate(this.x,this.y);
+			ctx.scale(this.scale,this.scale);
+			ctx.rotate(this.rotate);
+			ctx.moveTo(-this.radius,0);
+			ctx.lineTo(this.radius,0);
+			ctx.moveTo(-disX,disY);
+			ctx.lineTo(disX,-disY);
+			ctx.moveTo(disX,disY);
+			ctx.lineTo(-disX,-disY);
+			ctx.stroke();
+			ctx.restore();
+		}
+		
+		
+		init();
+		function init(){
+			for(var i = 0 ; i < snowCount; i++){
+				setTimeout(function(){
+					var randomX = Math.random() * canvas.clientWidth,
+					speedX = 1 + Math.random() * 2,
+					speedY = 3 + Math.random() * 2,
+					rotate = 1 + Math.random() * 2,
+					scale = 0.5 + Math.random();
+					speedRotate =  Math.random() * 20 / 100 ;
+					snowArr.push(new Snow(randomX,speedX,speedY,speedRotate,rotate,scale));
+				},Math.random() * 4000)
+			}
+			yukiHuru();
+		}
+		
+		function yukiHuru(){
+			snowInterval = setInterval(function(){
+				ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
+				for(var i = 0 ; i < snowArr.length ; i++){
+					snowArr[i].x = (snowArr[i].x + snowArr[i].speedX) % canvas.clientWidth;
+					snowArr[i].y = (snowArr[i].y + snowArr[i].speedY) % canvas.clientHeight;
+					snowArr[i].rotate = (snowArr[i].rotate + snowArr[i].speedRotate) % 60;
+					snowArr[i].render();
+				}
+				
+			},30)
+			
+		}
+		
+		
+	</script>
+</html>

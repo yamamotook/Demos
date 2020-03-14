@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+			.wrapper{
+				width: 400px;
+				margin: 200px auto 0;
+				border: 1px solid #CCCCCC;
+				padding: 10px 15px;
+			}
+			.wrapper .search input{
+				width: 200px;
+				padding-left: 10px;
+				outline: none;
+				border-radius: 4px;
+				border: 1px solid #666666;
+			}
+			.wrapper .search .btn{
+				color: #abcdef;
+				padding: 0 10px;
+				cursor: pointer;
+				border-radius: 4px;
+			}
+			.wrapper .search .btn.active{
+				color: #FFFFFF;
+				background-color: #abcdef;
+			}
+			.list ul li{
+				position:relative;
+				margin-bottom: 10px;
+				border-bottom:  1px solid #666666;
+				padding: 10px 0 10px 60px;
+			}
+			.list>ul>li>img{
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				top: 10px;
+				left: 0;
+			}
+			.list > ul > li > .name{
+				margin-bottom: 5px;
+			}
+			.list > ul >li>.desc{
+				font-size: 12px;
+				color: #333333;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="search">
+				<input type="text">
+				<span class="btn" sex="m">Male</span>
+				<span class="btn" sex="f">Famale</span>
+				<span class="btn active" sex="a">All</span>
+			</div>
+			<div class="list">
+				<ul>
+					<!-- <li>
+						<img src="img/ArrayDemo/1.jpg" alt="">
+						<p class="name">yamamoto</p>
+						<p class="desc">イケメンになったオトコ</p>
+					</li>
+					<li>
+						<img src="img/ArrayDemo/2.jpg" alt="">
+						<p class="name">akane</p>
+						<p class="desc">目の大きい女</p>
+					</li>
+					<li>
+						<img src="img/ArrayDemo/3.jpg" alt="">
+						<p class="name">shizuka</p>
+						<p class="desc">面白い人</p>
+					</li>
+					<li>
+						<img src="img/ArrayDemo/4.jpg" alt="">
+						<p class="name">hanaoka</p>
+						<p class="desc">容疑者Xの献身の花岡です</p>
+					</li>
+					<li>
+						<img src="img/ArrayDemo/5.jpg" alt="">
+						<p class="name">minamoto</p>
+						<p class="desc">ドラえもんの源です</p>
+					</li> -->
+				</ul>
+			</div>
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		//data:
+		var personArr = [
+			{name:'yamamoto',src:'img/ArrayDemo/1.jpg',desc:'イケメンになったオトコ',sex :'m',age : 19},
+			{name:'akane',src:'img/ArrayDemo/2.jpg',desc:'目の大きい女',sex :'f',age : 18},
+			{name:'shizuka',src:'img/ArrayDemo/3.jpg',desc:'面白い人',sex :'f',age : 18},
+			{name:'okamoto',src:'img/ArrayDemo/4.jpg',desc:'容疑者Xの献身の花岡です',sex :'f',age : 30},
+			{name:'minamoto',src:'img/ArrayDemo/5.jpg',desc:'ドラえもんの源です',sex :'f',age : 8}
+		];
+		
+		//initail 
+		var ul = document.getElementsByTagName('ul')[0];
+		var input = document.getElementsByTagName('input')[0];	
+		var btn = document.getElementsByClassName('btn');
+		
+		//global var 
+		var globalText = '';
+		var globalSex = 'a';
+		
+		function changeaBySex(btn){
+			var btnArr = Array.prototype.slice.call(btn);
+			var lastActive = btnArr[2];
+			
+			btnArr.forEach(function (ele,index,self){
+				ele.onclick = function (){
+					this.className = 'btn active';
+					lastActive.className = 'btn';
+					lastActive = this;
+					globalSex = this.getAttribute('sex');
+					renderData(filterDataByName(globalText,filterDataBySex(personArr,globalSex)));
+				}
+			});
+		}
+		
+		
+		changeaBySex(btn);
+		
+		input.oninput = function (){
+			globalText= this.value;
+			renderData(filterDataBySex(filterDataByName(globalText,personArr),globalSex));
+		}
+		
+		//根据性别筛选数据
+		function filterDataBySex(data,sex){
+			var newArr;
+			if(sex == 'a')
+			{
+				return data;
+			}else{
+				newArr = data.filter(function(ele,index,self){
+					console.log(ele['sex'].indexOf(sex) != -1); 
+					return ele['sex'].indexOf(sex) != -1;
+				});
+					return newArr;
+			}
+			
+		}
+		
+		//根据输入的name 筛选数据
+		function filterDataByName(text,data){
+			if(!text)
+			{
+				return data;
+			}else{
+				return data.filter(function(ele,index,self){
+					return ele['name'].indexOf(text) != -1;
+				});
+			}
+		}
+		
+		// 数据渲染
+		function renderData(arr){
+			var innerHtml = '';
+			arr.forEach(function(ele,index,self){
+				innerHtml += '<li><img src="' + ele['src'] + '"><p class="name">'+ ele['name'] +'</p><p class="desc">' + ele['desc'] +'</p></li>'
+			});
+			ul.innerHTML = innerHtml;
+		}
+		renderData(personArr);
+		
+	</script>
+</html>

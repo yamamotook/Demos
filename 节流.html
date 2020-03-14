@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="text">0</div>
+		<button id="btn">click</button>
+	</body>
+	<script>
+		
+		var oBtn = document.getElementById('btn'),
+			oText = document.getElementById('text');
+			
+		function throttle(hanlder,spread){
+			var lastTime = 0;
+			
+			return function(){
+				var curTime = new Date().getTime();
+				if(curTime - lastTime > spread){
+					hanlder.apply(this,arguments);
+					lastTime = curTime;
+				}
+				
+			}
+			
+		}
+		function buy(e){
+			
+			oText.innerText = parseInt(oText.innerText) + 1 ;
+		}
+		oBtn.onclick = throttle(buy,1000);
+	 	
+	
+		
+			
+	</script>
+</html>

@@ -1,0 +1,336 @@
+*{
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+	color: #000000;
+	list-style: none;
+	font-family: "microsoft yahei";
+}
+.head{
+}
+.headContainer{
+	width: 100%;
+	background: #FFFFFF;
+	min-width: 990px;
+	border-bottom: 1px solid #E5E5E5;
+	
+	
+}
+.headContent{
+	width: 990px;
+	margin: 0 auto;
+	height: 110px;
+}
+.logohref{
+	display: block;
+	width: 350px;
+	position: relative;
+	float: left;
+	overflow: hidden;
+	margin-top: 25px;
+}
+.logo{
+	width: 150px;
+	height: 62px;
+	float: left;
+}
+.logo img{
+	width: 100%;
+}
+.small{
+	font-size: 25px;
+	color: #3e3e3e;
+	font-family: "microsoft yahei";
+	margin-left: 20px;
+	position: absolute;
+	top: 15px;
+	/*margin-top: 99999px;  margin 塌陷*/
+}
+
+.container{
+	width: 100%;
+	height: 500px;
+	background-image: url(../Images/login/loginBG.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;	
+}
+.loginContent{
+	margin: 0 auto 160px;
+	width: 990px;
+	height: 340px;
+	position: relative;
+}
+.loginBox{
+	background: #FFFFFF;
+	box-sizing: border-box;
+	position: absolute;
+	height: 380px;
+	width: 350px;
+	top: 35px;
+	right: 8px;
+	border-top: 2px solid #FF4400;
+	box-shadow: 0px 2px 2px 2px #E5E5E5;
+	padding: 25px;
+}
+.scanCode{
+	position: absolute;
+	top: 8px;
+	right: 25px;
+	font-size: 52px !important;
+	cursor: pointer;
+	color: #F40;
+}
+
+.loginBox_tittle{
+	width: 300px;
+	height: 26px;
+	line-height: 26px;
+	font-size: 16px;
+	margin-top:19px ;
+	font-weight: 700;
+	color: #3c3c3c;
+}
+.loginForm{
+	width: 300px;
+	height: 209px;
+	margin-top: 30px;
+}
+.username{
+	width: 240px;
+	height: 42px;
+	position: relative;
+}
+.passcode{
+	width: 240px;
+	height: 42px;
+	position: relative;
+}
+.formIncon{
+	display: block;
+	height: 40px;	
+	width: 40px;
+	line-height: 40px;
+	text-align: center;
+	background: #DDD;
+	color: #FFFFFF;
+	font-size: 22px !important;
+	position: absolute;
+	top: 1px;
+	left: 1px;
+}
+.userInput,.passcodeform{
+	width: 240px;
+	height: 18px;
+	font-size: 14px;
+	line-height: 18px;
+	padding: 11px 8px 11px 50px;
+	border: 1px solid #DDDDDD;
+	background: rgb(250,255,189);
+}
+.passcode{
+	margin-top: 23px;
+}
+.loginButton{
+	width: 300px;
+	height: 42px;
+	border: 0;
+	overflow: hidden;
+	line-height: 42px;
+	font-size: 16px;
+	color: #FFFFFF;
+	background: #FF4400;
+	border-radius: 3px;
+	cursor: pointer;
+	font-weight: 700;
+	margin-top: 23px;
+}
+.loginBottom{
+	width: 300px;
+	overflow: hidden;
+}
+.loginBottom_a{
+	float: left;
+	font-size: 12px;
+	color: #6C6C6C;
+	margin-right: 10px;
+}
+.loginBottom .loginBottom_a:first-child{
+	margin-right: 54px;
+}
+/*foot*/
+.foot{
+	width: 100%;
+}
+.footContainer{
+	margin: 0 auto;
+	min-width: 1280px ;
+}
+.footwrap1
+{
+	width: 100%;
+	border-bottom: 1px solid #e5e5e5;
+	background-color: #fafbfc;
+	border-top: 2px solid #f40;
+	
+}
+.footwrap1 ul{
+	width: 990px;
+	height: 90px;
+	margin: 0 auto;
+	border: 1px solid #E5E5E5;
+	border-bottom: 0 none;
+	border-top: 0 none;
+	list-style: none;
+}
+.footwrap1 ul li {
+	float: left;
+	width: 289px;
+	height: 60px;
+	padding: 15px 0 15px 40px;
+	text-align: center;
+	border-left:1px solid #E5E5E5 ;
+}
+.footwrap1 ul li:first-child {
+	border-left: 0 none;
+}
+.promiseIcon{
+	color: #F40;
+	font-size: 45px !important;
+	float: left;
+	line-height: 45px;
+	margin-right: 10px;
+}
+.promise span:first-child{
+	display: block;
+	font-size: 14px;
+	font-weight: 700;
+	margin-bottom: 5px;
+}
+.promise span:last-child{
+	display: inline-block;
+	width: 200px;
+	color: #888;
+	font-size: 12px;
+	line-height: 1.5;
+}
+.footwrap2{
+	width: 990px;
+	margin: 0 auto;
+	padding-top: 20px;
+	border-bottom: 1px solid #E5E5E5;
+}
+.smallLogo{
+	float: left;
+	width: 95px;
+	height: 40px;
+	color: #FF4400;
+	margin-right: 65px;
+}
+.footDl{
+	float: left;
+	width: 140px;
+	margin-right:70px;
+}
+.footDl dt{
+	font-weight: 800;
+	font-size: 14px;
+	width: 120px;
+	margin-bottom: 5px;
+}
+.footDl  dd{
+	display: inline-block;
+	margin-left: 0;
+	margin-right: 20px;
+	margin-bottom: 5px;
+	float: left;
+}
+.footDl dt{
+	text-align: center;
+}
+.footDl dd a{
+	font-size: 12px;
+	line-height: 1.5;
+	color: #888;
+}
+.footCode img{
+	width: 60px;
+	height: 60px;
+}
+.footwrap3{
+	width: 990px;
+	height: 90px;
+	padding-top: 15px;
+	color: #888888;
+	margin: 0 auto;
+	border-bottom: 1px solid #E5E5E5;
+}
+.worldFooter{
+	height: 20px;
+	line-height: 20px;
+	margin-bottom: 10px;
+}
+.worldFooter span{
+	float: left;
+	color: #888888;
+	font-size: 12px;
+	line-height: 1.5;
+}
+.worldFooter .frist{
+	border-left: 0 none;
+}
+.worldFooter a{
+	float: left;
+	white-space: nowrap;
+	line-height: 11px;
+	padding: 0 9px 1px;
+	border-left: 1px solid #E5E5E5;
+	color: #888888;
+	font-size: 12px;
+	line-height: 1.5;
+}
+.worldPartner{
+	height: 50px;
+	margin-left: 65px;
+}
+.footwrap4{
+	width: 990px;
+	padding-top: 18px;
+	padding-bottom: 9px;
+	margin: 0 auto;
+}
+.ali .first{
+	border-left: 0 none;
+	padding-left: 4px;
+	
+}
+.ali a{
+	padding: 0 7px;
+	border-left:1px solid #E5E5E5 ;
+	font-size: 12px;
+	line-height: 12px;
+	color: #6c6c6c !important;
+}
+.footwrap5{
+	width: 990px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+.footend a{
+	font-size: 12px;
+	line-height: 12px;
+	color: #6c6c6c !important;
+	padding: 0 2px;
+}
+.footend .first{
+	padding-left: 4px;
+}
+.footend span{
+	font-size: 12px;
+	color: #9c9c9c;
+	line-height: 12px;
+}
+.footend .cr{
+	font-style: initial;
+	margin-left: 30px;	
+}
+
