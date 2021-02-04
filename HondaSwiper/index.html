@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.wrapper{
+				width: 1200px;
+				height: 680px;
+				border: 1px solid black;
+				margin: 5px auto 10px auto;
+				overflow: hidden;
+				position: relative;
+			}
+			.item{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				perspective: 800px;
+				transform-style: preserve-3d;
+				box-sizing: border-box;
+				overflow: hidden;
+			}
+			.move.nextOne{
+				animation: pic-moveNext 1s cubic-bezier(1,0,0,1);
+			}
+			.move.prevOne{
+				animation: pic-movePrev 1s cubic-bezier(1,0,0,1);
+			}
+			.move.nextOne.item img{
+				animation: pic-backNext 1s cubic-bezier(1,0,0,1),
+						   pic-scale .5s cubic-bezier(0,0,1,1);
+			}
+			.move.prevOne.item img{
+				animation: pic-backPrev 1s cubic-bezier(1,0,0,1),
+						   pic-scale .5s cubic-bezier(0,0,1,1) forwards;
+			}
+			.item img{
+				position: absolute;
+				left: 0;
+				width: 100%;
+				height: 100%;
+
+			}
+			.command{
+				display: flex;
+				justify-content: space-around;
+			}
+			.btn{
+				padding: 5px 12px;
+				border-style: none;
+			}
+			@-webkit-keyframes pic-moveNext{
+				from{
+					transform: matrix(1,0,0,1,0,0);
+				}
+				to{
+					transform: matrix(1,0,0,1,-1200,0);
+				}
+			}
+			@-webkit-keyframes pic-movePrev{
+				from{
+					transform: matrix(1,0,0,1,0,0);
+				}
+				to{
+					transform: matrix(1,0,0,1,1200,0);
+				}
+			}
+			@-webkit-keyframes pic-scale{
+				from{
+					transform: translatez(0px);
+				}
+				to{
+					transform: translatez(-150px);
+				}
+			}
+			@-webkit-keyframes pic-backNext{
+				from{
+					left: 0;
+				}
+				to{
+					left: 500px;
+				}
+			}
+			@-webkit-keyframes pic-backPrev{
+				from{
+					left: 0;
+				}
+				to{
+					left: -640px;
+				}
+			}
+			@-webkit-keyframes mojifadeOut{
+				from{
+					opacity: 1;
+				}
+				to{
+					opacity: 0;
+				}
+			}
+			.moji{
+				position: absolute;
+				left: 50px;
+				top: 50%;
+				transform: translateY(-50%); 
+				z-index: 9;
+				opacity: 1;
+				font-family: "游ゴシック体","游ゴシック","Yu Gothic",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,sans-serif;
+			}
+			.moji h4{
+				font-size: 45px;
+				margin-bottom: 10px;
+				font-family: "游ゴシック体","游ゴシック","Yu Gothic",YuGothic,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,sans-serif;
+			}
+			.moji p{
+				font-size: 25px;
+			}
+			.move .moji{
+				animation: mojifadeOut 1s cubic-bezier(1,0,0,1);
+			}
+			.buttons{
+				position: absolute;
+				left: 50%;
+				transform: translatex(-50%);
+				bottom: 20px;
+				width: 200px;
+				height: 50px;
+				display: flex;
+				list-style: none;
+				justify-content: center;
+				align-items: center;
+			}
+			.prev,.next{
+				width: 8px;
+				height: 20px;
+				background-image: url(./img/spriteHonda.png);
+				cursor: pointer;
+				margin: 0 10px;
+			}
+			.prev{
+				background-position: -132px -34px;
+			}
+			.next{
+				background-position: -18px -136px;
+			}
+			.dot{
+				width: 4px;
+				height: 4px;
+				background-color: #ccc;
+				border-radius: 50%;
+				margin: 0 10px;
+				transition: all .5s ease;
+				cursor: pointer;
+			}
+			.dot.active{
+				width: 8px;
+				height: 8px;
+				background-color: #cb0712;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="item" index="3">
+				<img src="./img/honda_vezel.jpg" alt="">
+				<div class="moji">
+					<h4>VEZEL</h4>
+					<p>走りと艶にこだわった。もう一つの個性。</p>
+					<p>TOURING登場。</p>
+				</div>
+			</div>
+			<div class="item" index="2">
+				<img src="./img/HondaKuruma_1.jpg" alt="">
+				<div class="moji">
+					<h4>INSIGHT</h4>
+					<p>クルマの本質を徹底的に磨き上げた一台。</p>
+				</div>
+			</div>
+			<div class="item" index="1">
+				<img src="./img/honda_2_ACTYTRUCK.jpg" alt="">
+				<div class="moji">
+					<h4>ACTY TRUCK</h4>
+					<p>毎日を元気にする</p>
+					<p>2トーンカラーの特別仕様車、登場。</p>
+				</div>
+			</div>
+			<div class="item" index="0">
+				<img src="./img/HondaKuruma_3.jpg" alt="">
+				<div class="moji">
+					<h4>NSX</h4>
+					<p>新しい興奮と躍動で全身を染めて、</p>
+					<p>NSX、さらに深まる。</p>
+				</div>
+			</div>
+			<ul class="buttons">
+				<li class="prev"></li>
+				<li class="dot active"></li>
+				<li class="dot"></li>
+				<li class="dot"></li>
+				<li class="dot"></li>
+				<li class="next"></li>
+			</ul>
+		</div>
+		
+		
+		
+		
+	</body>
+	<script src="jquery.js"></script>
+	<script>
+		(function (){
+			var lock = true,
+				itemLen = $('.wrapper').find('.item').length,
+				curIndex = 0 ,
+				timeOut;
+			$('.next').click(function (e){
+				if(lock){
+					lock=false;
+					//得到下一张展示的图片的索引,[0-itemLen]
+					var nextCur = curIndex + 1 == itemLen ? 0 : curIndex + 1,
+						oItem = $('.wrapper').find('.item'),
+						oLast = oItem.eq(itemLen - 1);
+					//将下一张要展示的图片放到最后一张的下面
+					oLast.before(oItem.filter('[index="'+ nextCur +'"]'));
+					//移动顶层的图片
+					oLast.addClass('move nextOne');
+					dotChange(nextCur);
+					//animation 时间 1s ,动画结束后 要移除包含了动画的class
+					timeOut = setTimeout(function (){
+						//还原类名,成为原始状态
+						oItem.eq(itemLen -1 ).removeClass('move nextOne');
+						//将顶层的图片拿到最底下
+						$('.wrapper').prepend(oLast);
+						curIndex = nextCur;
+						clearTimeout(timeOut);
+						lock = true;
+					},950)
+				}
+			});
+			
+			$('.prev').click(function (e){
+				if(lock){
+					lock=false;
+					var prevCur = curIndex - 1 < 0 ? itemLen - 1 : curIndex - 1,
+						oItem = $('.wrapper').find('.item'),
+						oLast = oItem.eq(itemLen - 1);
+					oLast.before(oItem.filter('[index="' + prevCur +'"]'));
+					oLast.addClass('move prevOne');
+					dotChange(prevCur);
+					timeOut = setTimeout(function(){
+						oLast.removeClass('move prevOne');
+						$('.wrapper').prepend( oLast );
+						curIndex = prevCur;
+						clearTimeout(timeOut);
+						lock = true;
+					},950)
+					
+				}
+			});
+			$('.buttons').on('click','.dot',function (){
+				var nextCur = $(this).index() - 1,
+					oItem = $('.wrapper').find('.item'),
+					oLast = oItem.eq( itemLen - 1 );
+				if(nextCur == curIndex){
+					console.log('end');
+					return false;
+				}
+				oLast.before(oItem.filter('[index="' + nextCur +'"]'));
+				oLast.addClass('move nextOne');
+				dotChange(nextCur);
+				timeOut = setTimeout(function (){
+					oLast.removeClass('move prevOne');
+					$('.wrapper').prepend( oLast );
+					curIndex = nextCur;
+					clearTimeout(timeOut);
+					lock = true;
+				},950)
+				
+			})
+			function dotChange(index){
+				$('.buttons').find('.dot').removeClass('active');
+				$('.buttons').find('.dot').eq(index).addClass('active');
+			}
+		}())
+		
+	</script>
+</html>
+
+
