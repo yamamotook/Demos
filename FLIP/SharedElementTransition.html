@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .item-list-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-height: 100vh;
+        overflow-y: auto;
+      }
+      .item-list-container > .item {
+        flex: 0 0 30%;
+        transform-origin: top left;
+      }
+      .item-list-container > .item > img {
+        width: 100%;
+        object-fit: cover;
+      }
+      .item-detail-container{
+          position: fixed;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          max-height: 100%;
+          overflow-y: scroll;
+          /* display: flex; */
+            display: none;
+          flex-direction: column;
+          transform-origin: top left;
+      }
+      .item-detail-cover{
+        height: 100vw;
+        width: 100%;
+      }
+      .item-detail-cover img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transform-origin: top left;
+          
+      }
+      .item-detail-content{
+          box-sizing: border-box;
+          padding: 15px;
+          background-color: #232323;
+          color: #fff;
+        flex: 1 0 0;
+      }
+      .item-detail-content > *{
+          margin-bottom: 1rem;
+      }
+      .title{
+        font-size: 2rem;
+      }
+      .creator{
+          font-size: 1rem;
+        opacity: 0.6;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="item-list-container">
+        <div class="item" data-key="owl">
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-owl.png"
+          />
+        </div>
+        <div class="item" data-key="deer">
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-deer.png"
+          />
+        </div>
+        <div class="item" data-key="hipster">
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-hipster.png"
+          />
+        </div>
+        <div class="item" data-key="ram">
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-ram.png"
+          />
+        </div>
+        <div class="item" data-key="dog">
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-dog.png"
+          />
+        </div>
+        <div class="item" data-key="ram-side">
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-sideram.png"
+          />
+        </div>
+        <div class="item" data-key="ram-horns">
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-multiram.png"
+          />
+        </div>
+        <div class="item" data-key="gorilla">
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-gorilla.png"
+          />
+        </div>
+        <div class="item" data-key="bird">
+          <img
+            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-bird.png"
+          />
+        </div>
+
+        <div class="item" data-key="owl2">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-owl.png"
+            />
+          </div>
+          <div class="item" data-key="deer2">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-deer.png"
+            />
+          </div>
+          <div class="item" data-key="hipster2">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-hipster.png"
+            />
+          </div>
+          <div class="item" data-key="ram2">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-ram.png"
+            />
+          </div>
+          <div class="item" data-key="dog2">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-dog.png"
+            />
+          </div>
+          <div class="item" data-key="ram-side2">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-sideram.png"
+            />
+          </div>
+          <div class="item" data-key="ram-horns2">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-multiram.png"
+            />
+          </div>
+          <div class="item" data-key="gorilla2">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-gorilla.png"
+            />
+          </div>
+          <div class="item" data-key="bird2">
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/kl-bird.png"
+            />
+          </div>
+      </div>
+      <div class="item-detail-container">
+            <div class="item-detail-cover">
+                <img />
+            </div>
+            <div class="item-detail-content">
+                <div class="title">Great Horned Owl</div>
+                <div class="creator">Lorem ipsum dolor</div>
+                <div class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit est dolor consequatur nam labore esse maxime pariatur iste. Optio dolorum, debitis dicta fugit quaerat nesciunt corporis consequatur voluptates earum possimus?</div>
+            </div>
+      </div>
+    </div>
+    <script src="./SharedElementTransition.js"></script>
+  </body>
+</html>

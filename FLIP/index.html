@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        .container{
+            margin : 200px auto 0px auto; 
+             display: flex;
+             align-items: center; 
+             flex-direction: column; 
+        }
+        .header{
+            display: flex;
+            justify-content: center;
+        }
+        .header > button{
+            border: none;
+            outline: none;
+            background-color:deepskyblue;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 3px;
+            margin: 20px 15px;
+            cursor: pointer;
+        }
+        .content{
+            display: flex;
+            width: 550px;
+            flex-wrap: wrap;
+        }
+        .content > .item{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border: 1px solid #aaa;
+            box-sizing: content-box;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="header">
+            <button class="add">添加一个数字</button>
+            <button class="remove">移除一个数字</button>
+            <button class="shuffle">打乱</button>
+        </div>
+        <div class="content">
+        </div>
+    </div>
+    <script src="./FLIP.js"></script>
+    <script src="./index.js"></script>
+
+</body>
+</html>
